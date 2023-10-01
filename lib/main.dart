@@ -1,7 +1,11 @@
 // ignore_for_file: use_key_in_widget_constructors
 
+import 'dart:convert';
+
 import 'package:book_store/Core/Database/local_database/shared_preferences.dart';
+import 'package:book_store/Features/Auth/Models/user_moudel.dart';
 import 'package:book_store/Features/Auth/ViewModel/login_cubit/login_cubit.dart';
+import 'package:book_store/Features/BookScreen/ViewModel/cubit/book_cubit.dart';
 import 'package:book_store/Features/HomeScreen/VieewModel/cubit/home_cubit.dart';
 import 'package:book_store/Features/Splash%20Screen/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -14,10 +18,14 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheData.cacheInitialization();
   await DioHelper.init();
+  String? userDataString;
 
-  await const FlutterSecureStorage().read(key: 'token').then((value) {
+  await const FlutterSecureStorage().read(key: 'userData').then((value) {
     if (value != null) {
-      LoginCubit.userData.token = value;
+      userDataString = json.decode(value);
+    }
+    if (userDataString != null) {
+      LoginCubit.userData = UserModel.fromJson(json.decode(userDataString!));
     }
   });
   return runApp(MyApp());
@@ -28,9 +36,25 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<HomeCubit>(
-          create: (BuildContext context) => HomeCubit()..getHomeSliderImages(),
-        ),
+        if (LoginCubit.userData.token != null)
+          BlocProvider<HomeCubit>(
+            lazy: false,
+            create: (
+              BuildContext context,
+            ) =>
+                HomeCubit()..getHomeSliderImages(),
+          ),
+        if (LoginCubit.userData.token != null)
+          BlocProvider<BookCubit>(
+            lazy: false,
+            create: (
+              BuildContext context,
+            ) =>
+                BookCubit()
+                  ..getBestSellers()
+                  ..getNewArrivalBooks()
+                  ..getCategoriesBooks(),
+          ),
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,

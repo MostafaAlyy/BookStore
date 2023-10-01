@@ -8,3 +8,10 @@ const verifyEmailEndPoint = 'verify-email';
 const resendVerifyCodeEmailEndPoint = 'resend-verify-code';
 
 const sliderHomeEndPoint = 'sliders';
+
+const bestsellerBooksEndPoint = 'products-bestseller';
+const newArrivalBooksEndPoint = 'products-new-arrivals';
+
+const categoriesEndPoint = 'categories';
+
+const productsSearchEndPoint = 'products-search';

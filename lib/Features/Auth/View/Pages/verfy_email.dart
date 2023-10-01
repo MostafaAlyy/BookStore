@@ -2,7 +2,6 @@ import 'package:book_store/Core/general_components/build_show_toast.dart';
 import 'package:book_store/Features/Auth/ViewModel/login_cubit/login_cubit.dart';
 import 'package:book_store/Features/Auth/ViewModel/register_cubit/register_cubit.dart';
 import 'package:book_store/Features/HomeScreen/View/Pages/HomePage.dart';
-import 'package:book_store/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';

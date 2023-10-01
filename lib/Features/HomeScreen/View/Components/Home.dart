@@ -1,7 +1,9 @@
-import 'package:book_store/Features/Auth/ViewModel/login_cubit/login_cubit.dart';
+import 'package:book_store/Features/BookScreen/ViewModel/cubit/book_cubit.dart';
 import 'package:book_store/Features/HomeScreen/VieewModel/cubit/home_cubit.dart';
+import 'package:book_store/Features/HomeScreen/View/Components/HomeSlider.dart';
 import 'package:book_store/Features/HomeScreen/View/Components/Home_appbar.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:book_store/Features/HomeScreen/View/Components/books_slider.dart';
+import 'package:book_store/Features/HomeScreen/View/Components/categorie_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,37 +19,32 @@ class Home extends StatelessWidget {
       builder: (context, state) {
         var cupit = HomeCubit.get(context);
         return SafeArea(
-          child: Column(
-            children: [
-              HomeAppBar(cupit: cupit),
-              CarouselSlider.builder(
-                  itemCount: cupit.homeSliderImages.length,
-                  itemBuilder: (context, index, realIndex) => Container(
-                        decoration: BoxDecoration(
-                            color: Colors.blue,
-                            borderRadius: BorderRadius.circular(12)),
-                        child: Image.network(
-                          cupit.homeSliderImages[index],
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                  options: CarouselOptions(
-                    height: MediaQuery.of(context).size.height * 0.2,
-                    aspectRatio: 16 / 9,
-                    viewportFraction: 0.8,
-                    initialPage: 0,
-                    enableInfiniteScroll: true,
-                    reverse: false,
-                    autoPlay: true,
-                    autoPlayInterval: const Duration(seconds: 3),
-                    autoPlayAnimationDuration:
-                        const Duration(milliseconds: 800),
-                    autoPlayCurve: Curves.fastOutSlowIn,
-                    enlargeCenterPage: true,
-                    enlargeFactor: 0.3,
-                    scrollDirection: Axis.horizontal,
-                  ))
-            ],
+          child: BlocConsumer<BookCubit, BookState>(
+            listener: (context, state) {
+              // TODO: implement listener
+            },
+            builder: (context, state) {
+              var bookCupit = BookCubit.get(context);
+
+              return SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(children: [
+                  HomeAppBar(cupit: cupit),
+                  HomeSlider(cupit: cupit),
+                  BooksSlider(
+                    books: bookCupit.bestSellers,
+                    sliderName: "Best Seller",
+                  ),
+                  CategorySlider(
+                      categories: bookCupit.categories,
+                      sliderName: "Categories"),
+                  BooksSlider(
+                    books: bookCupit.newArrivalBooks,
+                    sliderName: "New Arrival",
+                  )
+                ]),
+              );
+            },
           ),
         );
       },

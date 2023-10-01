@@ -1,5 +1,6 @@
 import 'package:book_store/Core/Database/remote/DioHelper/dio_helper.dart';
 import 'package:book_store/Core/Database/remote/DioHelper/end_points.dart';
+import 'package:book_store/Features/BookScreen/View/Pages/books_search.dart';
 import 'package:book_store/Features/HomeScreen/View/Components/Home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
@@ -9,6 +10,7 @@ part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitial());
+
   static HomeCubit get(BuildContext context) => BlocProvider.of(context);
   int selectedPageIndex = 0;
   PageController pageController = PageController();
@@ -16,12 +18,14 @@ class HomeCubit extends Cubit<HomeState> {
       AdvancedDrawerController();
   List<Widget> homePages = [
     const Home(),
-    const Home(),
+    BookSearch(),
     const Home(),
     const Home()
   ];
   void changePage(int index) {
-    pageController.jumpToPage(index);
+    pageController.animateToPage(index,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.fastOutSlowIn);
     selectedPageIndex = index;
     emit(ChangePageState());
   }
@@ -31,7 +35,7 @@ class HomeCubit extends Cubit<HomeState> {
     homeSliderImages = [];
     DioHelper.getData(url: sliderHomeEndPoint).then((value) {
       for (var element in value.data['data']['sliders']) {
-        homeSliderImages.add(element);
+        homeSliderImages.add(element['image']);
       }
       emit(GetHomeSliderSuccessState());
     }).catchError((onError) {

@@ -50,7 +50,7 @@ class HomePage extends StatelessWidget {
               children: cupit.homePages,
             ),
             bottomNavigationBar: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(left: 8.0, right: 8, bottom: 8),
               child: FloatingNavbar(
                 backgroundColor: ColorHelper.mainColor,
                 selectedItemColor: ColorHelper.mainColor,

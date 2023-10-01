@@ -2,7 +2,6 @@ import 'package:book_store/Core/ColorHelper.dart';
 import 'package:book_store/Features/Auth/ViewModel/login_cubit/login_cubit.dart';
 import 'package:book_store/Features/HomeScreen/View/Pages/HomePage.dart';
 import 'package:book_store/Features/onboarding/View/Pages/onboarding.dart';
-import 'package:book_store/main.dart';
 import 'package:flutter/material.dart';
 
 import '../../Core/Database/local_database/shared_preferences.dart';

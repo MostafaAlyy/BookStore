@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:book_store/Core/Database/remote/DioHelper/end_points.dart';
 import 'package:book_store/Features/Auth/Models/user_moudel.dart';
 import 'package:dio/dio.dart';
@@ -25,8 +27,9 @@ class LoginCubit extends Cubit<LoginState> {
     }).then((value) {
       userData = UserModel.fromJson(value.data['data']);
       if (keepMeLogin) {
+        String userDataString = json.encode((userData.toJson()));
         const FlutterSecureStorage()
-            .write(key: 'token', value: userData.token!);
+            .write(key: 'userData', value: json.encode((userDataString)));
       }
       emit(LoginSuccess(value.data['message']));
       debugPrint(value.data['message']);
