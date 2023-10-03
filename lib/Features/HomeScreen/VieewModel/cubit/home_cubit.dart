@@ -2,6 +2,7 @@ import 'package:book_store/Core/Database/remote/DioHelper/dio_helper.dart';
 import 'package:book_store/Core/Database/remote/DioHelper/end_points.dart';
 import 'package:book_store/Features/BookScreen/View/Pages/books_search.dart';
 import 'package:book_store/Features/HomeScreen/View/Components/Home.dart';
+import 'package:book_store/Features/Profile/View/Pages/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,7 +21,8 @@ class HomeCubit extends Cubit<HomeState> {
     const Home(),
     BookSearch(),
     const Home(),
-    const Home()
+    const Home(),
+    ProfilePage()
   ];
   void changePage(int index) {
     pageController.animateToPage(index,

@@ -19,10 +19,14 @@ class HomeAppBar extends StatelessWidget {
         children: [
           IconButton(
               alignment: Alignment.topLeft,
+              iconSize: 24,
               onPressed: () {
                 cupit.advancedDrawerController.showDrawer();
               },
-              icon: const Icon(Icons.sort_outlined)),
+              icon: const Icon(
+                Icons.sort_outlined,
+                size: 24,
+              )),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,

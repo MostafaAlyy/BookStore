@@ -15,3 +15,5 @@ const newArrivalBooksEndPoint = 'products-new-arrivals';
 const categoriesEndPoint = 'categories';
 
 const productsSearchEndPoint = 'products-search';
+
+const updateProfileEndPoint = 'update-profile';

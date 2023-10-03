@@ -7,6 +7,7 @@ import 'package:book_store/Features/Auth/Models/user_moudel.dart';
 import 'package:book_store/Features/Auth/ViewModel/login_cubit/login_cubit.dart';
 import 'package:book_store/Features/BookScreen/ViewModel/cubit/book_cubit.dart';
 import 'package:book_store/Features/HomeScreen/VieewModel/cubit/home_cubit.dart';
+import 'package:book_store/Features/Profile/ViewModel/cubit/profile_cubit.dart';
 import 'package:book_store/Features/Splash%20Screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,25 +37,23 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        if (LoginCubit.userData.token != null)
-          BlocProvider<HomeCubit>(
-            lazy: false,
-            create: (
-              BuildContext context,
-            ) =>
-                HomeCubit()..getHomeSliderImages(),
-          ),
-        if (LoginCubit.userData.token != null)
-          BlocProvider<BookCubit>(
-            lazy: false,
-            create: (
-              BuildContext context,
-            ) =>
-                BookCubit()
-                  ..getBestSellers()
-                  ..getNewArrivalBooks()
-                  ..getCategoriesBooks(),
-          ),
+        BlocProvider<HomeCubit>(
+          lazy: false,
+          create: (
+            BuildContext context,
+          ) =>
+              HomeCubit()..getHomeSliderImages(),
+        ),
+        BlocProvider<BookCubit>(
+          lazy: false,
+          create: (
+            BuildContext context,
+          ) =>
+              BookCubit()
+                ..getBestSellers()
+                ..getNewArrivalBooks()
+                ..getCategoriesBooks(),
+        ),
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,

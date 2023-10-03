@@ -1,4 +1,3 @@
-import 'package:book_store/Features/BookScreen/Model/product_model.dart';
 import 'package:book_store/Features/BookScreen/Model/search_field.dart';
 import 'package:book_store/Features/BookScreen/View/Components/book_search_card.dart';
 import 'package:book_store/Features/BookScreen/ViewModel/cubit/book_cubit.dart';

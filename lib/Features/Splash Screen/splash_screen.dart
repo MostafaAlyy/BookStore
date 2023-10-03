@@ -12,7 +12,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future.delayed(
-      const Duration(seconds: 4),
+      const Duration(seconds: 5),
       () {
         if (CacheData.getData(key: 'OnBoarding') == null) {
           CacheData.setData(key: 'OnBoarding', value: false);
