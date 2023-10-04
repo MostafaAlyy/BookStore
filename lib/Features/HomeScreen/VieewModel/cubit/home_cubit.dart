@@ -1,6 +1,8 @@
 import 'package:book_store/Core/Database/remote/DioHelper/dio_helper.dart';
 import 'package:book_store/Core/Database/remote/DioHelper/end_points.dart';
 import 'package:book_store/Features/BookScreen/View/Pages/books_search.dart';
+import 'package:book_store/Features/Cart/View/Pages/cart_page.dart';
+import 'package:book_store/Features/Favorite/View/Pages/favorite_page.dart';
 import 'package:book_store/Features/HomeScreen/View/Components/Home.dart';
 import 'package:book_store/Features/Profile/View/Pages/profile_page.dart';
 import 'package:flutter/material.dart';
@@ -20,9 +22,9 @@ class HomeCubit extends Cubit<HomeState> {
   List<Widget> homePages = [
     const Home(),
     BookSearch(),
-    const Home(),
-    const Home(),
-    ProfilePage()
+    const FavoritePage(),
+    const CartPage(),
+    const ProfilePage()
   ];
   void changePage(int index) {
     pageController.animateToPage(index,

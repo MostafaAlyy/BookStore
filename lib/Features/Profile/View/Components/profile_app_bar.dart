@@ -1,6 +1,10 @@
 import 'package:book_store/Core/ColorHelper.dart';
+import 'package:book_store/Core/general_components/build_show_toast.dart';
+import 'package:book_store/Features/Auth/Models/user_moudel.dart';
+import 'package:book_store/Features/Auth/View/Pages/login.dart';
 import 'package:book_store/Features/Auth/ViewModel/login_cubit/login_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class ProfileAppBar extends StatelessWidget {
   const ProfileAppBar({
@@ -65,7 +69,17 @@ class ProfileAppBar extends StatelessWidget {
             top: 30,
             right: 10,
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                buildShowToast("LogOut Successfully");
+                const FlutterSecureStorage().delete(key: 'userData');
+                LoginCubit.userData = UserModel();
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LoginPage(),
+                    ),
+                    (route) => false);
+              },
               iconSize: 30,
               icon: const Icon(
                 Icons.logout,

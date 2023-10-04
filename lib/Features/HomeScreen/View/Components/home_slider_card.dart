@@ -4,13 +4,9 @@ import 'package:flutter/material.dart';
 class HomeSliderCard extends StatelessWidget {
   const HomeSliderCard({
     super.key,
-    required this.cupit,
-    required this.index,
+    required this.img,
   });
-
-  final HomeCubit cupit;
-  final int index;
-
+  final String img;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,7 +14,7 @@ class HomeSliderCard extends StatelessWidget {
       decoration: BoxDecoration(
           color: Colors.blue, borderRadius: BorderRadius.circular(12)),
       child: Image.network(
-        cupit.homeSliderImages[index],
+        img,
         fit: BoxFit.fill,
       ),
     );

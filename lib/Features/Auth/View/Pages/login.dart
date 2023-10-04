@@ -4,6 +4,10 @@ import 'package:book_store/Core/general_components/main_button.dart';
 import 'package:book_store/Core/my_validators.dart';
 import 'package:book_store/Features/Auth/View/Pages/register.dart';
 import 'package:book_store/Features/Auth/ViewModel/login_cubit/login_cubit.dart';
+import 'package:book_store/Features/BookScreen/ViewModel/cubit/book_cubit.dart';
+import 'package:book_store/Features/Cart/ViewModel/cubit/cart_cubit.dart';
+import 'package:book_store/Features/Favorite/ViewModel/cubit/favorite_cubit.dart';
+import 'package:book_store/Features/HomeScreen/VieewModel/cubit/home_cubit.dart';
 import 'package:book_store/Features/HomeScreen/View/Pages/HomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -153,6 +157,10 @@ class _LoginPageState extends State<LoginPage> {
         if (state is LoginSuccess) {
           if (LoginCubit.userData.user!.emailVerified!) {
             buildShowToast(state.successMessage);
+            CartCubit.get(context).getCartBooks();
+            CartCubit.get(context).initGovernorate();
+            FavoriteCubit.get(context).getFavoriteBooks();
+
             Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(

@@ -19,6 +19,7 @@ class Home extends StatelessWidget {
       builder: (context, state) {
         var cupit = HomeCubit.get(context);
         return SafeArea(
+          bottom: false,
           child: BlocConsumer<BookCubit, BookState>(
             listener: (context, state) {
               // TODO: implement listener

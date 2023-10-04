@@ -17,3 +17,14 @@ const categoriesEndPoint = 'categories';
 const productsSearchEndPoint = 'products-search';
 
 const updateProfileEndPoint = 'update-profile';
+
+const getFavoriteBooksEndPoint = 'wishlist';
+const addFavoriteBooksEndPoint = 'add-to-wishlist';
+const removeFavoriteBooksEndPoint = 'remove-from-wishlist';
+
+const getCartBooksEndPoint = 'cart';
+const addCartBooksEndPoint = 'add-to-cart';
+const removeCartBooksEndPoint = 'remove-from-cart';
+const updateCartBooksEndPoint = 'update-cart';
+
+const placeOrderEndPoint = 'place-order';

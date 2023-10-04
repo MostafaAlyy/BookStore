@@ -6,6 +6,8 @@ import 'package:book_store/Core/Database/local_database/shared_preferences.dart'
 import 'package:book_store/Features/Auth/Models/user_moudel.dart';
 import 'package:book_store/Features/Auth/ViewModel/login_cubit/login_cubit.dart';
 import 'package:book_store/Features/BookScreen/ViewModel/cubit/book_cubit.dart';
+import 'package:book_store/Features/Cart/ViewModel/cubit/cart_cubit.dart';
+import 'package:book_store/Features/Favorite/ViewModel/cubit/favorite_cubit.dart';
 import 'package:book_store/Features/HomeScreen/VieewModel/cubit/home_cubit.dart';
 import 'package:book_store/Features/Profile/ViewModel/cubit/profile_cubit.dart';
 import 'package:book_store/Features/Splash%20Screen/splash_screen.dart';
@@ -43,6 +45,22 @@ class MyApp extends StatelessWidget {
             BuildContext context,
           ) =>
               HomeCubit()..getHomeSliderImages(),
+        ),
+        BlocProvider<FavoriteCubit>(
+          lazy: false,
+          create: (
+            BuildContext context,
+          ) =>
+              FavoriteCubit()..getFavoriteBooks(),
+        ),
+        BlocProvider<CartCubit>(
+          lazy: false,
+          create: (
+            BuildContext context,
+          ) =>
+              CartCubit()
+                ..getCartBooks()
+                ..initGovernorate(),
         ),
         BlocProvider<BookCubit>(
           lazy: false,
